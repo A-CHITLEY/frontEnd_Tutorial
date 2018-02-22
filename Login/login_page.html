@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS_DEMO</title>
+<link rel="shortcut icon" href="./Favi_1.jpg">
+<link href="./home.css"  type="text/css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+  $(function() {
+    $('#login-form-link').click(function(e) {
+    $("#login-form").delay(100).fadeIn(100);
+    $("#register-form").fadeOut(100);
+    $('#register-form-link').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+  $('#register-form-link').click(function(e) {
+    $("#register-form").delay(100).fadeIn(100);
+    $("#login-form").fadeOut(100);
+    $('#login-form-link').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+  });
+
+});
+
+    function dofirst() {
+
+            var regbutton = document.getElementById("register-submit");
+            var loginbutton = document.getElementById("login-submit");
+
+            regbutton.addEventListener("click",storeFormData,false);
+            loginbutton.addEventListener("click",getFormData,false);
+
+    }
+    
+    function storeFormData() {
+      var _userName = document.getElementById("regusername").value;
+      var _name = document.getElementById("regname").value;
+      var _emailId =  document.getElementById("email").value;
+      var _pswd = document.getElementById("regpassword").value;
+      var _repswd = document.getElementById("regpassword2").value;
+
+      if(_pswd === _repswd){
+          sessionStorage.setItem("userName", _userName);
+          sessionStorage.setItem("email", _emailId);
+          sessionStorage.setItem("password", _pswd);
+          sessionStorage.setItem("fullName", _name);
+      }
+      else{
+        alert("Passwords do not match");
+      }
+    }
+
+    function getFormData(){
+      var _userName = document.getElementById("username").value;
+      var _pswd = document.getElementById("password").value;
+
+      if((_userName === sessionStorage.getItem("userName") && _pswd === sessionStorage.getItem("password")) || (_userName === "Aniruddha" && _pswd ==="Aniruddha123")){
+
+        var _document = "<html style='height:100%;'>"+"<body style='background: no-repeat url(login-page-background.jpg);background-size: 100% 100%;padding-top: 100px;'>"+"<div style='text-align: center;margin-top: 125px;font-family: sans-serif;font-size: 50;'>WELCOME  <span>"  +sessionStorage.getItem("fullName")+  "</span></div>"+"</body>"+"</html>";     
+        document.open();
+        document.write(_document);
+        document.close();
+      }
+      else{
+        alert("Login Failure");
+      }
+    }
+    window.addEventListener("load",dofirst,false);
+</script>
+</head>
+<body>
+<div class="container">
+   <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-login">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <form id="login-form" action="#" method="post" role="form" style="display: block;">
+                <h2>LOGIN</h2>
+                  <div class="form-group">
+                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" autocomplete="off" value="">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                  </div>
+                  <div class="col-xs-6 form-group pull-right">     
+                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                  </div>
+              </form>
+              <form id="register-form" action="#" method="post" role="form" style="display: none;">
+                <h2>REGISTER</h2>
+                  <div class="form-group">
+                    <input type="text" name="username" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="username" id="regname" tabindex="1" class="form-control" placeholder="Fullname" value="" autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" id="regpassword" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" id="regpassword2" tabindex="2" class="form-control" placeholder="Re-Enter-Password" autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                      </div>
+                    </div>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-6 tabs">
+              <a href="#" class="active" id="login-form-link"><div class="login">LOGIN</div></a>
+            </div>
+            <div class="col-xs-6 tabs">
+              <a href="#" id="register-form-link"><div class="register">REGISTER</div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+</div>
+</body>
+</html>

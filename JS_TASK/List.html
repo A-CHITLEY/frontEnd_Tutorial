@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JS_DEMO</title>
+<script type="text/javascript">
+    var numbers = [1,2,3,4,5];
+    function display(){
+      var rand=Math.floor((Math.random() * 6));
+      if(numbers.length >=1){
+        for (var i = numbers.length - 1; i >= 0; i--) {
+
+          if(numbers[i] == rand)
+          {
+              var a = numbers.indexOf(rand);
+              numbers.splice(a,1);
+              document.getElementById("demo").innerHTML = rand;
+          }
+        }                   
+      }
+      else{
+        document.getElementById("demo").innerHTML = "Exausted";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+   <button onclick="display()"> GENERATE NUMBER</button>
+   <p id="demo"></p>
+  </div>
+</body>
+</html>

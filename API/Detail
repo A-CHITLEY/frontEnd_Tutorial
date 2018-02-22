@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detail</title>
+<link rel="shortcut icon" href="./Favi_1.jpg">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+
+  .card{
+    margin-top: 100px;
+  }
+
+	</style>
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+ <div class="row">
+
+   <div class="card col-sm-12 text-center">
+
+      <div class="view overlay hm-white-slight">
+          <img id="im" src= "" class="img-fluid" alt="">
+          <a href="#">
+              <div class="mask"></div>
+          </a>
+      </div>
+
+     
+        <div class="card-body">
+            <!--Title-->
+            <h4 id ="title" class="card-title">Card title</h4>
+            <!--Text-->
+            <p class="card-text" id ="bd"> </p>
+          
+        </div>
+   </div>
+          
+</div>
+  <script type="text/javascript">
+    window.onload=populate ;
+     function populate() {
+     document.getElementById('im').src = sessionStorage.getItem("image");
+     document.getElementById('bd').innerHTML = sessionStorage.getItem("comment");
+     document.getElementById('title').innerHTML = sessionStorage.getItem("title");
+    }
+  </script>
+</body>
+</html>

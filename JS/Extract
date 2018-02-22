@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Extract</title>
+
+	<style type="text/css">
+	    .parentButton{
+	    	display: block;
+	    }
+		.button{
+			display: inline-block;
+			float: left;
+		}
+	</style>
+</head>
+
+<body>
+  <div class ="parentButton">
+	<div class="button" onclick="split('rapidView')">     
+        <button type="submit"> RAPID VIEW  </button> 
+    </div>
+    <div class="buttton" onclick="split('projectKey')">     
+        <button type="submit"> PROJECT KEY  </button>
+    </div>
+    <div class="button" onclick="split('selectedIssue')">     
+        <button type="submit"> SELECTED ISSUE  </button>
+    </div>
+    <div class="button" onclick="split('all')">     
+        <button type="submit"> ALL  </button>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  	function split(rapid){
+  		var _url = "https://js.session.net/secure/RapidBoard/?rapidView=91&projectKey=test&selectedIssue=1234";
+  		if(rapid === "all"){
+            var pairs1 = _url.split('?')[1];
+            var pairs = pairs1.split('&');
+            var result = {};
+            pairs.forEach(function(pair) {
+            pair = pair.split('=');
+            result[pair[0]] = decodeURIComponent(pair[1] || '');
+            });
+            document.write(JSON.stringify(result));   
+  		}
+  		else{
+  		var url = new URL(_url);
+        var c = url.searchParams.get(rapid);
+        document.write(c);
+  		}
+  		 
+  	}
+  </script>
+</body>
+</html>
